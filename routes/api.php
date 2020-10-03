@@ -7,7 +7,6 @@ Route::namespace('Auth')->group(function (){
     Route::post('logout', 'LogoutController')->middleware('auth:api');
 });
 
-<<<<<<< HEAD
 Route::prefix('userRole')->middleware(['auth:api','role'])->group(function() {
     Route::get('/', function(){
         return 'userRole';
@@ -34,7 +33,6 @@ Route::prefix('roleRoute')->middleware(['auth:api','role'])->group(function() {
 //     Route::post('/sell', 'SellController');
 //     Route::post('/order', 'OrderController');
 // });
-=======
 
 Route::prefix('/product')->group(function() {
     Route::get('/', 'ProductController@index');
@@ -72,4 +70,3 @@ Route::prefix('/employee')->group(function() {
     Route::put('/{employee}', 'EmployeeController@update');
     Route::delete('/{employee}', 'EmployeeController@destroy');
 });
->>>>>>> 4c502b4c14668f8474f5aabc466f105e39d65bf0

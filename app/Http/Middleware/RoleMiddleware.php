@@ -24,6 +24,6 @@ class RoleMiddleware
             return $next($request);
         }
 
-        return "this age can't you access";
+        return "this page can't you access";
     }
 }

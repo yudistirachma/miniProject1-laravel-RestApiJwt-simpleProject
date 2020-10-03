@@ -60,7 +60,6 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-<<<<<<< HEAD
     public function roles(){
         return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'role_id');
     }
@@ -82,13 +81,13 @@ class User extends Authenticatable implements JWTSubject
         }
 
         return $cek;
-=======
+    }
+
     public function customer() {
         return $this->hasOne(Customer::class);
     }
 
     public function employee() {
         return $this->hasOne(Employee::class);
->>>>>>> 4c502b4c14668f8474f5aabc466f105e39d65bf0
     }
 }
