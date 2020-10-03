@@ -70,8 +70,6 @@ class ProductController extends Controller
             return response('No parameter', 422);
         }
 
-
-
         $product->update([
             'slug' => $request->has('name') ? \Str::slug($request->name) : $product->slug,
             'name' => $request->input('name', $product->name),

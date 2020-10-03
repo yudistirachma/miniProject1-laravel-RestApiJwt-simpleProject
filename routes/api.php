@@ -7,7 +7,7 @@ Route::namespace('Auth')->group(function (){
     Route::post('logout', 'LogoutController')->middleware('auth:api');
 });
 
-// CRUD Product
+
 Route::prefix('/product')->group(function() {
     Route::get('/', 'ProductController@index');
     Route::get('/{product}', 'ProductController@show');
@@ -16,15 +16,31 @@ Route::prefix('/product')->group(function() {
     Route::delete('/{product}', 'ProductController@destroy');
 });
 
-// Transaction
 Route::namespace('Transaction')->group(function() {
     Route::post('/sell', 'SellController');
     Route::post('/order', 'OrderController');
 });
 
+Route::prefix('/supplier')->group(function() {
+    Route::get('/', 'SupplierController@index');
+    Route::get('/{supplier}', 'SupplierController@show');
+    Route::post('/', 'SupplierController@store');
+    Route::put('/{supplier}', 'SupplierController@update');
+    Route::delete('/{supplier}', 'SupplierController@destroy');
+});
 
-// CRUD Supplier
+Route::prefix('/customer')->group(function() {
+    Route::get('/', 'CustomerController@index');
+    Route::get('/{customer}', 'CustomerController@show');
+    Route::post('/', 'CustomerController@store');
+    Route::put('/{customer}', 'CustomerController@update');
+    Route::delete('/{customer}', 'CustomerController@destroy');
+});
 
-// CRUD Customer
-
-// CRUD Employee
+Route::prefix('/employee')->group(function() {
+    Route::get('/', 'EmployeeController@index');
+    Route::get('/{employee}', 'EmployeeController@show');
+    Route::post('/', 'EmployeeController@store');
+    Route::put('/{employee}', 'EmployeeController@update');
+    Route::delete('/{employee}', 'EmployeeController@destroy');
+});

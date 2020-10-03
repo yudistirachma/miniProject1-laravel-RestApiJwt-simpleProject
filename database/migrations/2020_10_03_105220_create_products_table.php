@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->float('price');
+            $table->float('price')->default(0);
             $table->integer('stock')->default(0);
             $table->timestamps();
         });

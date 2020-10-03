@@ -9,7 +9,6 @@ $factory->define(Customer::class, function (Faker $faker) {
     return [
         'fullname' => null, //$faker->name,
         'bod' => $faker->dateTimeBetween('-60 years', '-20 years'),
-        'gender' => $faker->boolean(50),
-        'transaction_sum' => 0
+        'gender' => $faker->boolean(50)
     ];
 });

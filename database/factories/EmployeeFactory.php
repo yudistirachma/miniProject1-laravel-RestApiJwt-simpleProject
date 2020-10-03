@@ -11,6 +11,6 @@ $factory->define(Employee::class, function (Faker $faker) {
         'gender' => $faker->boolean(50),
         'bod' => $faker->dateTimeBetween('-50 years', '-20 years'),
         'join_date' => $faker->dateTimeBetween('-10 years', 'now'),
-        'position' => $faker->randomElement(['Cashier', 'Warehouse'])
+        'job_title' => $faker->randomElement(['Cashier', 'Warehouse'])
     ];
 });

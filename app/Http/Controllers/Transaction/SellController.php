@@ -50,6 +50,8 @@ class SellController extends Controller
 
         $total = $request->has('discount') ? $total - $request->discount : $total;
         $sell->update(['total' => $total]);
+        $customer->transaction_sum += $total;
+        $customer->save();
 
         return response($sell->load('items'), 201);
     }
