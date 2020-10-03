@@ -19,7 +19,6 @@ class CreateSellItemsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedInteger('qty');
             $table->float('total');
-            $table->timestamps();
 
             $table->foreign('sell_id')->references('id')->on('sells')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');

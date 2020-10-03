@@ -6,7 +6,7 @@ use App\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
-    $name = str_replace('.', '', $faker->text(20));
+    $name = str_replace('.', '', $faker->unique()->text(20));
 
     return [
         'name' => $name,

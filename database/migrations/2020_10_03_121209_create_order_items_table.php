@@ -17,9 +17,8 @@ class CreateOrderItemsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedInteger('qty');
-            $table->float('total')->nullable();
-            $table->timestamps();
+            $table->unsignedInteger('qty')->default(0);
+            $table->float('total')->default(0);
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');

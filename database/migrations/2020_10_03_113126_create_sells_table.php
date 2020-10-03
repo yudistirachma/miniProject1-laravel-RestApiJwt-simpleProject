@@ -15,8 +15,8 @@ class CreateSellsTable extends Migration
     {
         Schema::create('sells', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('customer_id');
-            $table->float('total');
+            $table->unsignedInteger('customer_id')->nullable();
+            $table->float('total')->default(0);
             $table->float('discount')->default(0);
             $table->timestamps();
 
