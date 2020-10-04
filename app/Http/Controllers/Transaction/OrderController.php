@@ -48,7 +48,7 @@ class OrderController extends Controller
                 'total' => $subTotal,
             ]);
 
-            $stockNew = $product + $cart['qty'];
+            $stockNew = $product->stock + $cart['qty'];
             $product->update(['stock' => $stockNew]);
             $total += $subTotal;
         }

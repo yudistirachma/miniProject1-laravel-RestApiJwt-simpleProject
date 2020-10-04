@@ -27,9 +27,13 @@ class SellController extends Controller
             'carts.*.qty' => ['numeric', 'min:0'],
         ]);
 
-        $customer = $request->has('customer') ? Customer::findOrFail($request->customer)->id : null;
+        $customer_id = null;
+        if ($request->has('customer')){
+            $customer = Customer::findOrFail($request->customer);
+            $customer_id = $customer->id;
+        }
 
-        $sell = Sell::create([ 'customer_id' => $customer ]);
+        $sell = Sell::create([ 'customer_id' => $customer_id ]);
 
         $total = 0;
         foreach($request->carts as $cart) {
@@ -43,15 +47,17 @@ class SellController extends Controller
                 'total' => $subTotal,
             ]);
 
-            $stockNew = $product - $cart['qty'];
+            $stockNew = $product->stock - $cart['qty'];
             $product->update(['stock' => $stockNew]);
             $total += $subTotal;
         }
 
         $total = $request->has('discount') ? $total - $request->discount : $total;
         $sell->update(['total' => $total]);
-        $customer->transaction_sum += $total;
-        $customer->save();
+        if ($customer) {
+            $customer->transaction_sum += $total;
+            $customer->save();
+        }
 
         return response($sell->load('items'), 201);
     }
