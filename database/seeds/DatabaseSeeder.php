@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             RoleRouteTableSeeder::class,
         ]);
 
-        $customerUsers = factory(App\User::class, 50)->create()->each(function ($user) {
+        $customerUsers = factory(App\User::class, 5)->create()->each(function ($user) {
             $user->customer()->save(factory(App\Customer::class)->make());
         });
-        $employeeUsers = factory(App\User::class, 10)->create()->each(function ($user) {
+        $employeeUsers = factory(App\User::class, 5)->create()->each(function ($user) {
             $user->customer()->save(factory(App\Employee::class)->make());
         });
-        $products = factory(App\Product::class, 50)->create();
+        $products = factory(App\Product::class, 10)->create();
         $suppliers = factory(App\Supplier::class, 10)->create();
 
     }

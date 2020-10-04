@@ -15,15 +15,13 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd(\Route::current()->uri);
-        $route_name = \Route::current()->uri;
-
+        $route_name = \Str::before(\Route::current()->uri, '/{');
         $user = \Auth::user();
 
         if ($user->cek_route($route_name)) {
             return $next($request);
         }
 
-        return "this page can't you access";
+        return response(["message" => "You are Forbidden."], 403);
     }
 }

@@ -65,7 +65,12 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function cek_route($route_name){
-        $route_id = Route::where('name_route', $route_name)->first()->id;
+        $route_id = Route::where('name_route', $route_name)->get();
+        if ($route_id->isEmpty()) {
+            return false;
+        }
+
+        $route_id = $route_id->first()->id;
         $roles = $this->roles;
 
         $cek = false;

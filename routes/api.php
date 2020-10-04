@@ -20,7 +20,7 @@ Route::prefix('roleRoute')->middleware(['auth:api','role'])->group(function() {
     Route::get('/{roleRoute}', 'RoleRouteController@show');
     Route::post('/', 'RoleRouteController@store');
     Route::put('/{roleRoute}', 'RoleRouteController@update');
-    Route::delete('/{roleRoute}', 'RoleRouteController@destroy');  
+    Route::delete('/{roleRoute}', 'RoleRouteController@destroy');
 });
 
 Route::prefix('role')->middleware(['auth:api','role'])->group(function() {
@@ -39,22 +39,12 @@ Route::prefix('route')->middleware(['auth:api','role'])->group(function() {
     Route::delete('/{route}', 'RouteController@destroy');
 });
 
-// // CRUD Product
-// Route::prefix('/product')->group(function() {
-//     Route::get('/', 'ProductController@index');
-//     Route::get('/{product}', 'ProductController@show');
-//     Route::post('/', 'ProductController@store');
-//     Route::put('/{product}', 'ProductController@update');
-//     Route::delete('/{product}', 'ProductController@destroy');
-// });
+Route::namespace('Transaction')->middleware(['auth:api','role'])->group(function() {
+    Route::post('/sell', 'SellController');
+    Route::post('/order', 'OrderController');
+});
 
-// // Transaction
-// Route::namespace('Transaction')->group(function() {
-//     Route::post('/sell', 'SellController');
-//     Route::post('/order', 'OrderController');
-// });
-
-Route::prefix('/product')->group(function() {
+Route::prefix('/product')->middleware(['auth:api','role'])->group(function() {
     Route::get('/', 'ProductController@index');
     Route::get('/{product}', 'ProductController@show');
     Route::post('/', 'ProductController@store');
@@ -62,12 +52,7 @@ Route::prefix('/product')->group(function() {
     Route::delete('/{product}', 'ProductController@destroy');
 });
 
-Route::namespace('Transaction')->group(function() {
-    Route::post('/sell', 'SellController');
-    Route::post('/order', 'OrderController');
-});
-
-Route::prefix('/supplier')->group(function() {
+Route::prefix('/supplier')->middleware(['auth:api','role'])->group(function() {
     Route::get('/', 'SupplierController@index');
     Route::get('/{supplier}', 'SupplierController@show');
     Route::post('/', 'SupplierController@store');
@@ -75,7 +60,7 @@ Route::prefix('/supplier')->group(function() {
     Route::delete('/{supplier}', 'SupplierController@destroy');
 });
 
-Route::prefix('/customer')->group(function() {
+Route::prefix('/customer')->middleware(['auth:api','role'])->group(function() {
     Route::get('/', 'CustomerController@index');
     Route::get('/{customer}', 'CustomerController@show');
     Route::post('/', 'CustomerController@store');
@@ -83,7 +68,7 @@ Route::prefix('/customer')->group(function() {
     Route::delete('/{customer}', 'CustomerController@destroy');
 });
 
-Route::prefix('/employee')->group(function() {
+Route::prefix('/employee')->middleware(['auth:api','role'])->group(function() {
     Route::get('/', 'EmployeeController@index');
     Route::get('/{employee}', 'EmployeeController@show');
     Route::post('/', 'EmployeeController@store');
