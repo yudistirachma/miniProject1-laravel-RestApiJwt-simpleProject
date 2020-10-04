@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(
+        DB::table('users')->insert([
             [
             'name' => 'superAdmin',
             'phone' => '083890591466',
@@ -33,6 +33,6 @@ class UsersTableSeeder extends Seeder
             'email' => Str::random(10).'@gmail.com',
             'password' => Hash::make('password'),
             ]
-        );
+        ]);
     }
 }

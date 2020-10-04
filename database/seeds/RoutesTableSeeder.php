@@ -13,7 +13,7 @@ class RoutesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('routes')->insert(
+        DB::table('routes')->insert([
             [
             'name_route' => 'api/role',
             ],
@@ -26,6 +26,6 @@ class RoutesTableSeeder extends Seeder
             [
             'name_route' => 'api/roleRoute',
             ],
-        );
+        ]);
     }
 }

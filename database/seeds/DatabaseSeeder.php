@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             UserRoleTableSeeder::class,
             RoleRouteTableSeeder::class,
         ]);
-        // $this->call(UsersTableSeeder::class);
 
         $customerUsers = factory(App\User::class, 50)->create()->each(function ($user) {
             $user->customer()->save(factory(App\Customer::class)->make());
