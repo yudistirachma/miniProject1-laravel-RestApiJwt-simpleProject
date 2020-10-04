@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\UserRole;
+use App\Role;
+use App\Route;
 use Illuminate\Http\Request;
 
-class UserRoleController extends Controller
+class RouteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class UserRoleController extends Controller
      */
     public function index()
     {
-        $userRole = UserRole::get();
-        return response($userRole, 200);
+        $route = Route::get();
+        return response($route, 200);
     }
 
     /**
@@ -27,13 +28,12 @@ class UserRoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'user_id' => ['required', 'integer'],
-            'role_id' => ['required', 'integer'],
+            'name_route' => ['string', 'required', 'unique:routes'],
         ]);
 
-        $userRole = UserRole::create($request->only('user_id', 'role_id'));
+        $route = Route::create($request->only('name_role'));
 
-        return response($userRole, 200);
+        return response($route, 200);
     }
 
     /**
@@ -42,9 +42,9 @@ class UserRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserRole $userRole)
+    public function show(Role $role)
     {
-        return response($userRole, 200);
+        return response($role, 200);
     }
 
     /**
@@ -54,23 +54,20 @@ class UserRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,UserRole $userRole)
+    public function update(Request $request, Role $role)
     {
         $request->validate([
-            'user_id' => ['required', 'integer'],
-            'role_id' => ['required', 'integer'],
+            'name_route' => ['string', 'required', 'unique:roles'],
         ]);
 
         if (!$request->all()) {
             return response('No parameter', 422);
         }
-        $userRole->update([
-            'user_id' => $request->input('user_id', $userRole->user_id),
-            'role_id' => $request->input('role_id', $userRole->role_id),
+        $role->update([
+            'name_route' => $request->input('name_route', $role->name_route),
         ]);
 
-        return response($userRole, 200);
-        
+        return response($role, 200);
     }
 
     /**
@@ -79,11 +76,11 @@ class UserRoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserRole $userRole)
+    public function destroy(Route $route)
     {
-        $userRoleOld = $userRole;
-        $userRole->delete();
+        $routeOld = $route;
+        $route->delete();
 
-        return response("$userRoleOld->id has deleted", 200);
+        return response("$routeOld->id has deleted", 200);
     }
 }

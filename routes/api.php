@@ -8,15 +8,35 @@ Route::namespace('Auth')->group(function (){
 });
 
 Route::prefix('userRole')->middleware(['auth:api','role'])->group(function() {
-    Route::get('/', function(){
-        return 'userRole';
-    });
+    Route::get('/', 'UserRoleController@index');
+    Route::get('/{user}', 'UserRoleController@show');
+    Route::post('/', 'UserRoleController@store');
+    Route::put('/{user}', 'UserRoleController@update');
+    Route::delete('/{user}', 'UserRoleController@destroy');
 });
 
 Route::prefix('roleRoute')->middleware(['auth:api','role'])->group(function() {
-    Route::get('/', function(){
-        return 'roleRoute';
-    });   
+    Route::get('/', 'RoleRouteController@index');
+    Route::get('/{roleRoute}', 'RoleRouteController@show');
+    Route::post('/', 'RoleRouteController@store');
+    Route::put('/{roleRoute}', 'RoleRouteController@update');
+    Route::delete('/{roleRoute}', 'RoleRouteController@destroy');  
+});
+
+Route::prefix('role')->middleware(['auth:api','role'])->group(function() {
+    Route::get('/', 'RoleController@index');
+    Route::get('/{role}', 'RoleController@show');
+    Route::post('/', 'RoleController@store');
+    Route::put('/{role}', 'RoleController@update');
+    Route::delete('/{role}', 'RoleController@destroy');
+});
+
+Route::prefix('route')->middleware(['auth:api','role'])->group(function() {
+    Route::get('/', 'RouteController@index');
+    Route::get('/{route}', 'RouteController@show');
+    Route::post('/', 'RouteController@store');
+    Route::put('/{route}', 'RouteController@update');
+    Route::delete('/{route}', 'RouteController@destroy');
 });
 
 // // CRUD Product

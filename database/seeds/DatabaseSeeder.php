@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            UsersTableSeeder::class,
+            RolesTableSeeder::class,
+            RoutesTableSeeder::class,
+            UserRoleTableSeeder::class,
+            RoleRouteTableSeeder::class,
+        ]);
         // $this->call(UsersTableSeeder::class);
 
         $customerUsers = factory(App\User::class, 50)->create()->each(function ($user) {
